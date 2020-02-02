@@ -15,6 +15,8 @@ namespace GreenvilleRevenueGUI
         public Form1()
         {
             InitializeComponent();
+            lblComparison.Text = "";
+            lblRevenue.Text = "This Year's Revenue: $0";
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
@@ -26,7 +28,13 @@ namespace GreenvilleRevenueGUI
 
             rev = contestantsNow * 25;
 
-
+            lblRevenue.Text = "This Year's Revenue: " + rev.ToString("C2");
+            if (contestantsNow > contestantsLast)
+                lblComparison.Text = "There are " + (contestantsNow - contestantsLast) + " more contestants this year than last year.";
+            else if (contestantsNow < contestantsLast)
+                lblComparison.Text = "There are " + (contestantsLast - contestantsNow) + " fewer contestants this year than last year.";
+            else
+                lblComparison.Text = "Both years have the same amount of contestants.";
         }
     }
 }
